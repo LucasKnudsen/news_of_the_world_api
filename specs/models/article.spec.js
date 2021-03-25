@@ -37,15 +37,14 @@ describe('Article', () => {
 
     });
 
-    // describe('is expected to have associations', () => {
-    //   it('<AssociatedModel>:<AssociationType>', () => {
-    //     // expect(associations)
-    //     //   .to.have.own.property('<model_alias_or_name>')
-    //     //   .to.be.instanceOf(Association.<AssociationType>)
-    //     //   .that.has.property('foreignKey', '<field>')
-    //     pending();
-    //   });
-    // });
+    describe('is expected to have associations', () => {
+      it('author:belongsTo', () => {
+        expect(associations)
+          .to.have.own.property('author')
+          .to.be.instanceOf(Association.belongsTo)
+          .that.has.property('foreignKey', 'authorId')
+      });
+    });
   });
 
   describe('Instance', () => {

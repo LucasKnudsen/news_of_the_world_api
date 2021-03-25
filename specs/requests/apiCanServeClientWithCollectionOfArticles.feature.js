@@ -12,11 +12,8 @@ afterEach(async () => {
 
 describe('GET /api/articles', () => {
   beforeEach(async () => {
-    await factory.createMany('Article', 5, [
-      {
-        title: 'My fantastic article!'
-      }
-    ])
+    let author = await factory.create('Author')
+    await factory.createMany('Article', 5, { authorID: author.id })
     response = await request.get('/api/articles')
   });
 
@@ -24,8 +21,13 @@ describe('GET /api/articles', () => {
     expect(response.status).to.equal(200)
   });
 
-  it.only('is expected to respond with a list of 5 articles', () => {
+  it('is expected to respond with a list of 5 articles', () => {
     expect(response.body['articles'].length).to.equal(5)
   });
+
+  it.only('is expected to have an author property', () => {
+    debugger
+    expect(response.body['articles'][0]['author']['name']).to.equal('Stephen Kings')
+  })
 
 });
