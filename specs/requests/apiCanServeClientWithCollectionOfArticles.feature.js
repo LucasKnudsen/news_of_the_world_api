@@ -13,7 +13,7 @@ afterEach(async () => {
 describe('GET /api/articles', () => {
   beforeEach(async () => {
     let author = await factory.create('Author')
-    await factory.createMany('Article', 5, { authorID: author.id })
+    await factory.createMany('Article', 5, { authorId: author.id })
     response = await request.get('/api/articles')
   });
 
@@ -22,12 +22,11 @@ describe('GET /api/articles', () => {
   });
 
   it('is expected to respond with a list of 5 articles', () => {
-    expect(response.body['articles'].length).to.equal(5)
+    expect(response.body.articles.length).to.equal(5)
   });
 
-  it.only('is expected to have an author property', () => {
-    debugger
-    expect(response.body['articles'][0]['author']['name']).to.equal('Stephen Kings')
+  it('is expected to have a Stephen King as the author', () => {
+    expect(response.body.articles[0].author.name).to.equal('Stephen King')
   })
 
 });

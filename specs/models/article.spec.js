@@ -41,7 +41,7 @@ describe('Article', () => {
       it('author:belongsTo', () => {
         expect(associations)
           .to.have.own.property('author')
-          .to.be.instanceOf(Association.belongsTo)
+          .to.be.instanceOf(Association.BelongsTo)
           .that.has.property('foreignKey', 'authorId')
       });
     });
@@ -70,15 +70,13 @@ describe('Article', () => {
       });
     });
 
-    // describe('is expected to have association accessors', () => {
-    //   it('for the <AssociatedModel> association', () => {
-    //     // expect(subject)
-    //     //   .to.respondTo('get<AssociatedModel>')
-    //     //   .and.respondTo('set<AssociatedModel>')
-    //     //   .and.respondTo('create<AssociatedModel>')
-    //     pending();
-
-    //   });
-    // });
+    describe('is expected to have association accessors', () => {
+      it('for the Author association', () => {
+        expect(subject)
+          .to.respondTo('getAuthor')
+          .and.respondTo('setAuthor')
+          .and.respondTo('createAuthor')
+      });
+    });
   });
 });

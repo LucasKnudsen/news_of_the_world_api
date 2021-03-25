@@ -20,6 +20,12 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
+    await queryInterface.createTable('Articles', {
+      authorId: {
+        type: Sequelize.INTEGER,
+        references: {model: 'authors', key: 'id'}
+      }
+    })
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('Authors');
